@@ -1,0 +1,43 @@
+{
+  "name": "@vlad/ui",
+  "version": "0.1.0",
+  "description": "Theme system, core components, and goober setup for React applications",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles": "./dist/styles/global.css",
+    "./fonts/*": "./dist/styles/fonts/*"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "bun run build:types && bun run copy:assets && bun build src/index.ts --outdir dist --target browser --sourcemap",
+    "build:types": "tsc -p tsconfig.build.json",
+    "copy:assets": "bun run copy:css && bun run copy:fonts && bun run copy:goober-types",
+    "copy:css": "mkdir -p dist/styles && cp src/styles/global.css dist/styles/global.css",
+    "copy:fonts": "mkdir -p dist/styles/fonts && cp src/styles/fonts/*.woff2 dist/styles/fonts/",
+    "copy:goober-types": "cp src/goober.d.ts dist/goober.d.ts",
+    "prepublishOnly": "bun run build"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5"
+  },
+  "peerDependencies": {
+    "react": "^18 || ^19",
+    "react-dom": "^18 || ^19"
+  },
+  "dependencies": {
+    "goober": "^2.1.18"
+  }
+}
