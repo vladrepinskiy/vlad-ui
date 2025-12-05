@@ -183,7 +183,3 @@ Full TypeScript support is included. The package exports all types:
 ```tsx
 import type { Theme, ThemeKey } from "@vlad/ui";
 ```
-
-## License
-
-MIT
